@@ -31,7 +31,7 @@ namespace NajotBooking.Web.Brokers.Apis
             //LocalConfigurations localConfigurations =
             //    configuration.Get<LocalConfigurations>();
 
-            string apiBaseUrl = "https://najot-booking.azurewebsites.net"; //localConfigurations.ApiConfigurations.Url;
+            string apiBaseUrl = "https://localhost:44328/"; //localConfigurations.ApiConfigurations.Url;
             this.httpClient.BaseAddress = new Uri(apiBaseUrl);
 
             return new RESTFulApiFactoryClient(this.httpClient);
