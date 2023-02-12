@@ -1,8 +1,34 @@
 ﻿@page "/seats"
+@using NajotBooking.Web.Brokers.Apis;
+@using NajotBooking.Web.Models.Foundations.Seats;
+@inject IApiBroker apiBroker;
 
 <PageTitle>Seats</PageTitle>
 
 <h1>Seats</h1>
 
+<EditForm Model="@seat" OnSubmit="@HandleSubmit">
+    <div class="mb-3 mt-3">
+        <InputNumber @bind-Value="@seat.Number" name="Number"  placeholder="Number" />
+    </div>
+    <div class="mb-3 mt-3">
+        <InputNumber @bind-Value="seat.Branch" name="Branch" placeholder="Branch" />
+    </div>
+    <div class="mb-3 mt-3">
+    <InputNumber @bind-Value="seat.Floor" name="Floor" placeholder="Floor" />
+    </div>
+    <div class="mb-3 mt-3">
+    <InputNumber @bind-Value="seat.Price" name="Price" placeholder="Price" />
+    </div>
+    <input type="submit" class="btn btn-primary" name="submit" />
+</EditForm>
 
+@code {
+    private readonly Seat seat = new();
 
+    private void HandleSubmit()
+    {
+        Console.Write("somethign");
+        // Process the form
+    }
+}
