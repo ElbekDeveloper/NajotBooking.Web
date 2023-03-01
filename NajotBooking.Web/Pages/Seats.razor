@@ -1,8 +1,72 @@
 ﻿@page "/seats"
+@using System.Net.Http;
+@using NajotBooking.Web.Models.Foundations.Seats;
+@using Newtonsoft.Json;
+@using System.Text;
+@inject HttpClient httpClient;
+@inject NavigationManager navigationManager;
 
 <PageTitle>Seats</PageTitle>
 
-<h1>Seats</h1>
+<div class="row border p-2" style="max-width: 800px; margin: 0 auto;">
+    <h1 class="text-primary text-center">Seat</h1> <hr />
 
+    <EditForm Model="@seat" OnValidSubmit="@PostSeatAsync">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+        <div class="form-group pb-3">
+            <label for="numberInput">Number</label>
+            <input type="number" class="form-control" name="Number" id="numberInput" @bind-value="@seat.Number" />
+            <ValidationMessage For="@(() => seat.Number)"/>
+        </div>
 
+        <div class="form-group pb-3">
+            <label for="branchInput">Branch</label>
+            <select class="form-select" @bind="@seat.Branch">
+                @foreach(var gender in Enum.GetValues(typeof(Branch)))
+                {
+                    <option value="@gender">@gender</option>
+                }
+            </select>
+        </div>
 
+        <div class="form-group pb-3">
+            <label for="floorInput">Floor</label>
+            <input type="number" class="form-control" name="Floor" id="floorInput" @bind-value="@seat.Floor" />
+            <ValidationMessage For="@(() => seat.Floor)" />
+        </div>
+
+        <div class="form-group pb-3">
+            <label for="priceInput">Price</label>
+            <input type="number" class="form-control" name="Price" id="priceInput" @bind-value="@seat.Price" />
+            <ValidationMessage For="@(() => seat.Price)" />
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">@(isLoading ? "Sending..." : "Submit")</button>
+    </EditForm>
+
+</div>
+
+@code {
+    public bool isLoading = false;
+    public Seat seat = new Seat();
+
+    private async Task PostSeatAsync()
+    {
+        isLoading = true;
+        DateTimeOffset now =  DateTimeOffset.UtcNow;
+        seat.Id = Guid.NewGuid();
+        seat.CreatedDate = now;
+        seat.UpdatedDate = now;
+
+        var serializedSeat = JsonConvert.SerializeObject(seat);
+
+        var requestContent = 
+            new StringContent(serializedSeat, Encoding.UTF8, "application/json");
+
+        await httpClient.PostAsync("https://najot-booking.azurewebsites.net/api/Seats", 
+                requestContent);
+
+        navigationManager.NavigateTo("/");
+        isLoading = false;
+    }
+}
