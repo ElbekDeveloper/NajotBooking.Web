@@ -10,6 +10,8 @@ namespace NajotBooking.Web
             builder.Services.AddHttpClient();
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
+            builder.Services.AddLogging();
+            builder.Services.AddHttpClient();
             builder.Services.AddTransient<IApiBroker, ApiBroker>();
 
             var app = builder.Build();
