@@ -1,6 +1,5 @@
-﻿@page "/seats"
+﻿@page "/seats/add-seat"
 @using System.Net.Http;
-@using NajotBooking.Web.Models.Foundations.Seats;
 @using Newtonsoft.Json;
 @using System.Text;
 @inject HttpClient httpClient;
@@ -9,7 +8,7 @@
 <PageTitle>Seats</PageTitle>
 
 <div class="row border p-2" style="max-width: 800px; margin: 0 auto;">
-    <h1 class="text-primary text-center">Seat</h1> <hr />
+    <h1 class="text-primary text-center">New seat</h1> <hr />
 
     <EditForm Model="@seat" OnValidSubmit="@PostSeatAsync">
         <DataAnnotationsValidator/>
@@ -66,7 +65,7 @@
         await httpClient.PostAsync("https://najot-booking.azurewebsites.net/api/Seats", 
                 requestContent);
 
-        navigationManager.NavigateTo("/");
+        navigationManager.NavigateTo("/seats");
         isLoading = false;
     }
 }
