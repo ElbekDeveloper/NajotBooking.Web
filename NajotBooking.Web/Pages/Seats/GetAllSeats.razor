@@ -18,7 +18,8 @@
                     <th scope="col">Branch</th>
                     <th scope="col">Floor</th>
                     <th scope="col">Price</th>
-                    <th scope="col"></th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,10 +31,8 @@
                         <td>@seat.Branch</td>
                         <td>@seat.Floor</td>
                         <td>@(string.Format("{0:c}", seat.Price))</td>
-                        <td class="d-flex justify-content-end">
-                            <NavLink href=@($"/seats/edit-seat/{@seat.Id}") class="btn btn-success">Edit</NavLink> &nbsp;
-                            <NavLink href=@($"/seats/delete-seat/{@seat.Id}") class="btn btn-danger">Delete</NavLink>
-                        </td>
+                        <td><NavLink href=@($"/seats/edit-seat/{@seat.Id}") class="btn btn-success">Edit</NavLink></td>
+                        <td><NavLink href=@($"/seats/delete-seat/{@seat.Id}") class="btn btn-danger">Delete</NavLink></td>
                     </tr>
                 }
             </tbody>
@@ -41,17 +40,3 @@
     </div>
 
 </div>
-
-@code {
-    public int order = 1;
-    public IEnumerable<Seat> RetrieveAllSeats = new List<Seat>();
-
-    protected override async Task OnInitializedAsync()
-    {
-        var response = 
-            await httpClient.GetAsync("https://najot-booking.azurewebsites.net/api/Seats");
-
-        RetrieveAllSeats = 
-            await response.Content.ReadFromJsonAsync<IEnumerable<Seat>>();
-    }
-}
