@@ -10,33 +10,41 @@
         <NavLink href="/seats/add-seat" class="btn btn-success"><i class="bi bi-plus-circle"></i> &nbsp; Add new seat</NavLink>
     </div>
     <div class="mt-3">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Number</th>
-                    <th scope="col">Branch</th>
-                    <th scope="col">Floor</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Action</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var seat in RetrieveAllSeats)
-                {
+         @if (!isLoading)
+         {
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <th scope="row">@(order++)</th>
-                        <td>@seat.Number</td>
-                        <td>@seat.Branch</td>
-                        <td>@seat.Floor</td>
-                        <td>@(string.Format("{0:c}", seat.Price))</td>
-                        <td><NavLink href=@($"/seats/edit-seat/{@seat.Id}") class="btn btn-success">Edit</NavLink></td>
-                        <td><NavLink href=@($"/seats/delete-seat/{@seat.Id}") class="btn btn-danger">Delete</NavLink></td>
+                        <th scope="col">#</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Floor</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Action</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var seat in RetrieveAllSeats)
+                    {
+                        <tr>
+                            <th scope="row">@(order++)</th>
+                            <td>@seat.Number</td>
+                            <td>@seat.Branch</td>
+                            <td>@seat.Floor</td>
+                            <td>@(string.Format("{0:c}", seat.Price))</td>
+                            <td><NavLink href=@($"/seats/edit-seat/{@seat.Id}") class="btn btn-success">Edit</NavLink></td>
+                            <td><NavLink href=@($"/seats/delete-seat/{@seat.Id}") class="btn btn-danger">Delete</NavLink></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+         }
+         else
+         {
+            <p class="text-center mt-3">Loading...</p>
+         }
     </div>
 
 </div>
