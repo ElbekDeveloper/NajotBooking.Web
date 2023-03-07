@@ -33,8 +33,8 @@
                             <td>@seat.Branch</td>
                             <td>@seat.Floor</td>
                             <td>@(string.Format("{0} sum", seat.Price))</td>
-                            <td><NavLink href=@($"/seats/edit-seat/{@seat.Id}") class="btn btn-success">Edit</NavLink></td>
-                            <td><NavLink href=@($"/seats/delete-seat/{@seat.Id}") class="btn btn-danger">Delete</NavLink></td>
+                            <td><NavLink href=@($"/seats/edit-seat/{@seat.Id}") class="btn btn-success"><i class="bi bi-pencil-square"></i> &nbsp; Edit</NavLink></td>
+                            <td><NavLink href=@($"/seats/delete-seat/{@seat.Id}") class="btn btn-danger"> <i class="bi bi-trash3"></i> &nbsp; Delete</NavLink></td>
                         </tr>
                     }
 

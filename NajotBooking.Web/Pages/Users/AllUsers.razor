@@ -35,13 +35,13 @@
                             <td>@user.PhoneNumber</td>
                             <td>
                                 <a href="/detail/user/{@user.Id}"
-                           class="btn btn-success"> Edit </a>
+                           class="btn btn-success"><i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
                             </td>
                             <td>
                                 <button type="submit" class="btn btn-danger"
                                 @onclick="@(()=>{ConfirmDelelte(
                             user.Id,user.FirstName);})">
-                                    Delete
+                                    <i class="bi bi-trash3"></i> &nbsp; Delete
                                 </button>
                             </td>
                         </tr>
