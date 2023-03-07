@@ -33,13 +33,13 @@
                         <td>@($"{@order.StartDate:dd.MM.yyyy}, {@order.StartDate:HH:mm}")</td>
                         <td>@($"{@order.EndDate:dd.MM.yyyy}, {@order.EndDate:HH:mm}")</td>
                         <td>
-                            <a href="/detail/order/{@order.Id}" class="btn btn-success"> Edit </a>
+                            <a href="/detail/order/{@order.Id}" class="btn btn-success"><i class="bi bi-pencil-square"></i> &nbsp; Edit </a>
                         </td>
                         <td>
                             <button type="submit" class="btn btn-danger"
                             @onclick="@(()=>{ConfirmDelelte(
                                 @order.Id);})">
-                                Delete
+                                <i class="bi bi-trash3"></i> &nbsp; Delete
                             </button>
                         </td>
                     </tr>
