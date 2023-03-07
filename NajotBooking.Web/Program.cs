@@ -1,4 +1,5 @@
 using NajotBooking.Web.Brokers.Apis;
+using NajotBooking.Web.Services.OrderServices;
 using NajotBooking.Web.Services.UserServices;
 
 namespace NajotBooking.Web
@@ -13,10 +14,7 @@ namespace NajotBooking.Web
             builder.Services.AddServerSideBlazor();
             builder.Services.AddLogging();
             builder.Services.AddTransient<IApiBroker, ApiBroker>();
-            builder.Services.AddHttpClient<IUserService, UserService>(client =>
-            {
-                client.BaseAddress = new Uri("https://najot-booking.azurewebsites.net/");
-            });
+            AddHttpClients(builder);
 
             var app = builder.Build();
 
@@ -33,5 +31,23 @@ namespace NajotBooking.Web
             app.MapFallbackToPage("/_Host");
             app.Run();
         }
+
+        private static void AddHttpClients(WebApplicationBuilder builder)
+        {
+            builder.Services.AddHttpClient();
+
+            var uri = new Uri("https://najot-booking.azurewebsites.net/");
+
+            builder.Services.AddHttpClient<IUserService, UserService>(client =>
+            {
+                client.BaseAddress = uri;
+            });
+
+            builder.Services.AddHttpClient<IOrderService, OrderService>(client =>
+            {
+                client.BaseAddress = uri;
+            });
+        }
+
     }
 }
