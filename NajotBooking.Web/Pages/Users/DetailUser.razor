@@ -2,10 +2,10 @@
 @using NajotBooking.Web.Models.Foundations.Users
 
 @if(@user==null){
-    <h3>Loading...</h3>
+    <p class="text-center">Loading...</p>
 }else{
 <div class="row border p-2" style="max-width: 800px; margin: 0 auto;">
-    <h1 class="text-primary text-center">New Order</h1> 
+    <h1 class="text-primary text-center">Edit User</h1> 
     <hr />
     <EditForm Model="@user" OnValidSubmit="@UpdateUser">
         <DataAnnotationsValidator />
@@ -25,7 +25,7 @@
                 <InputText @bind-Value="@user.Email" name="Email" placeholder="Email" class="form-control" />
             <ValidationMessage For="@(()=>@user.Email)" />
         </div>
-        <input type="submit" class="btn btn-primary" name="submit"  value="change"/>
+        <input type="submit" class="btn btn-primary" name="submit"  value="Update"/>
     </EditForm>
 </div>
 }

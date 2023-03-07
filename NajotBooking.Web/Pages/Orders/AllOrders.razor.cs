@@ -14,6 +14,8 @@ namespace NajotBooking.Web.Pages.Orders
         public IJSRuntime JsRuntime { get; set; }
         public IEnumerable<Order> Orders { get; set; }
 
+        private int orderNumber = 1;
+
         protected override async Task OnInitializedAsync()
         {
             Orders = (await OrderService.GetAllOrders()).ToList();

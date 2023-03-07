@@ -1,46 +1,53 @@
-﻿@page "/AllOrders"
+﻿@page "/AllOrders";
 
-<h3>OrdersList</h3>
-
-@if (Orders == null || Orders.Count() < 1)
-{
-    <h2>Loading...</h2>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Price</th>
-                <th scope="col">Start</th>
-                <th scope="col">End</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var order in Orders)
-            {
+<div>
+    <div class="d-flex justify-content-between">
+        <h3>OrdersList</h3>
+        <a href="/create/order" class="btn btn-success"><i class="bi bi-plus-circle"></i> &nbsp; Create Order</a>
+    </div>
+    @if (Orders == null || Orders.Count() < 1)
+    {
+        <p class="text-center">Loading...</p>
+    }
+    else
+    {
+        <table class="table mt-3">
+            <thead>
                 <tr>
-                    <td>@order.Price ,@order.Duration</td>
-                    <td>@order.StartDate</td>
-                    <td>@order.EndDate</td>
-                    <td>
-                        <a href="/detail/order/{@order.Id}"
-                   class="btn btn-info"> Detail </a>
-                    
-                        <button type="submit" class="btn btn-danger"
-                        @onclick="@(()=>{ConfirmDelelte(
-                            @order.Id);})">
-                            Delete
-                        </button>
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Start</th>
+                    <th scope="col">End</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Action</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
-
-<a href="/create/order" class="btn btn-primary"> Create Order</a>
+            </thead>
+            <tbody>
+                @foreach (var order in Orders)
+                {
+                    <tr>
+                        <td>@(orderNumber++)</td>
+                        <td>
+                            @($"{@order.Price} sum ,{@order.Duration} hour")
+                        </td>
+                        <td>@($"{@order.StartDate:dd.MM.yyyy}, {@order.StartDate:HH:mm}")</td>
+                        <td>@($"{@order.EndDate:dd.MM.yyyy}, {@order.EndDate:HH:mm}")</td>
+                        <td>
+                            <a href="/detail/order/{@order.Id}" class="btn btn-success"> Edit </a>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-danger"
+                            @onclick="@(()=>{ConfirmDelelte(
+                                @order.Id);})">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
 
 @code {
 
