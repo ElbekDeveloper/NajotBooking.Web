@@ -10,6 +10,9 @@ namespace NajotBooking.Web.Pages.Users
         public string Id { get; set; }
 
         [Inject]
+        public NavigationManager NavManager { get; set; }
+
+        [Inject]
         public IUserService UserService { get; set; }
 
         public User user;
@@ -21,7 +24,7 @@ namespace NajotBooking.Web.Pages.Users
         public async Task UpdateUser()
         {
             await UserService.UpdateUser(user);
-            StateHasChanged();
+            NavManager.NavigateTo("/AllUsers");
         }
     }
 }
