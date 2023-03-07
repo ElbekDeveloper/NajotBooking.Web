@@ -18,6 +18,8 @@ namespace NajotBooking.Web.Pages.Users
 
         public IEnumerable<User> Users { get; set; }
 
+        private int order = 1;
+
         protected override async Task OnInitializedAsync()
         {
             Users = (await UserService.GetAllUsers()).ToList();

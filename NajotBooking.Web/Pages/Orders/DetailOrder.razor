@@ -1,11 +1,9 @@
 ﻿@page "/detail/order/{orderId}"
 
-<h3>DetailOrder</h3>
-
 
 @if (@AllSeats == null || @AllUsers == null)
 {
-    <h2>Loading</h2>
+    <p class="text-center">Loading...</p>
 }
 else
 {
@@ -61,7 +59,7 @@ else
                 <ValidationMessage For="@(()=>order.EndDate)" />
             </div>
 
-            <input type="submit" class="btn btn-primary" name="submit" />
+            <input type="submit" class="btn btn-primary" value="Update" name="submit" />
         </EditForm>
     </div>
 }

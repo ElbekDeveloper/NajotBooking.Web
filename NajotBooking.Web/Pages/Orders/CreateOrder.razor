@@ -1,9 +1,8 @@
 ﻿@page "/create/order"
 @using NajotBooking.Web.Models.Foundations.Orders;
-<h3>CreateOrder</h3>
 
 @if (@AllSeats==null||@AllUsers==null){
-    <h2>Loading</h2>
+    <p class="text-center">Loading...</p>
 }else{
     <div class="row border p-2" style="max-width: 800px; margin: 0 auto;">
         <h1 class="text-primary text-center">New Order</h1> 
@@ -55,7 +54,7 @@
                 <ValidationMessage For="@(()=>order.EndDate)" />
             </div>
         
-            <input type="submit" class="btn btn-primary" name="submit" />
+            <input type="submit" class="btn btn-primary" value="Send" name="submit" />
         </EditForm>
     </div>
 }
