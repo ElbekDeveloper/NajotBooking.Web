@@ -4,27 +4,30 @@
 @if(@user==null){
     <h3>Loading...</h3>
 }else{
-
+<div class="row border p-2" style="max-width: 800px; margin: 0 auto;">
+    <h1 class="text-primary text-center">New Order</h1> 
+    <hr />
     <EditForm Model="@user" OnValidSubmit="@UpdateUser">
         <DataAnnotationsValidator />
         <div class="mb-3 mt-3">
-            <InputText @bind-Value="@user.FirstName" name="FirstName" placeholder="FirstName" />
+                <InputText @bind-Value="@user.FirstName" name="FirstName" placeholder="FirstName" class="form-control" />
             <ValidationMessage For="@(()=>@user.FirstName)" />
         </div>
         <div class="mb-3 mt-3">
-            <InputText @bind-Value="@user.LastName" name="LastName" placeholder="LastName" />
+                <InputText @bind-Value="@user.LastName" name="LastName" placeholder="LastName" class="form-control" />
             <ValidationMessage For="@(()=>@user.LastName)" />
         </div>
         <div class="mb-3 mt-3">
-            <InputText @bind-Value="@user.PhoneNumber" name="PhoneNumber" placeholder="PhoneNumber" />
+                <InputText @bind-Value="@user.PhoneNumber" name="PhoneNumber" placeholder="PhoneNumber" class="form-control" />
             <ValidationMessage For="@(()=>@user.PhoneNumber)" />
         </div>
         <div class="mb-3 mt-3">
-            <InputText @bind-Value="@user.Email" name="Email" placeholder="Email" />
+                <InputText @bind-Value="@user.Email" name="Email" placeholder="Email" class="form-control" />
             <ValidationMessage For="@(()=>@user.Email)" />
         </div>
         <input type="submit" class="btn btn-primary" name="submit"  value="change"/>
     </EditForm>
+</div>
 }
 
 @code{
