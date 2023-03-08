@@ -32,23 +32,18 @@ namespace NajotBooking.Web.Pages.Users
             Users = (await UserService.GetAllUsers()).ToList();
             StateHasChanged();
         }
-        public async void ConfirmDelelte(User user)
-        {
-            bool IsConfirmed = await JsRuntime.InvokeAsync<bool>("confirm", $"Do you want do Delelte {user.FirstName}");
-
-            if (IsConfirmed)
-            {
-                DeleteUserById(user.Id);
-            }
-        }
 
         public async void ConfirmDelelte(Guid userId, string name)
         {
             bool IsConfirmed = await JsRuntime.InvokeAsync<bool>("confirm", $"Do you want do Delelte {name}");
-
+            order = 1;
             if (IsConfirmed)
             {
                 DeleteUserById(userId);
+            }
+            else
+            {
+                StateHasChanged();
             }
         }
     }

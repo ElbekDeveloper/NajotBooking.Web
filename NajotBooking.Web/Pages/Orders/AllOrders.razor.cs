@@ -31,10 +31,14 @@ namespace NajotBooking.Web.Pages.Orders
         public async void ConfirmDelelte(Guid orderId)
         {
             bool IsConfirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Do you want do Delelte Order");
-
+            orderNumber = 1;
             if (IsConfirmed)
             {
                 DeleteOrderById(orderId);
+            }
+            else
+            {
+                StateHasChanged();
             }
         }
     }
